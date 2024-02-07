@@ -15,6 +15,10 @@ run/main_scene="res://scenes/world.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+SimpleGrass="*res://addons/simplegrasstextured/singleton.tscn"
+
 [display]
 
 window/size/viewport_width=1920
@@ -25,6 +29,15 @@ window/size/mode=2
 
 version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/simplegrasstextured/plugin.cfg")
+
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/simplegrasstextured/plugin.cfg")
 
 [input]
 
@@ -52,3 +65,42 @@ move_back={
 [rendering]
 
 lights_and_shadows/directional_shadow/soft_shadow_filter_quality=3
+
+[shader_globals]
+
+sgt_player_position={
+"type": "vec3",
+"value": Vector3(1e+06, 1e+06, 1e+06)
+}
+sgt_player_mov={
+"type": "vec3",
+"value": Vector3(0, 0, 0)
+}
+sgt_normal_displacement={
+"type": "sampler2D",
+"value": "res://addons/simplegrasstextured/images/normal.png"
+}
+sgt_motion_texture={
+"type": "sampler2D",
+"value": "res://addons/simplegrasstextured/images/motion.png"
+}
+sgt_wind_direction={
+"type": "vec3",
+"value": Vector3(1, 0, 0)
+}
+sgt_wind_movement={
+"type": "vec3",
+"value": Vector2(0, 0)
+}
+sgt_wind_strength={
+"type": "float",
+"value": 0.15
+}
+sgt_wind_turbulence={
+"type": "float",
+"value": 1.0
+}
+sgt_wind_pattern={
+"type": "sampler2D",
+"value": "res://addons/simplegrasstextured/images/wind_pattern.png"
+}
