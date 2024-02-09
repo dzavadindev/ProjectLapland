@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://bjqhy8nhsq3gs"]
+
+[ext_resource type="Script" path="res://scripts/EntityBase.gd" id="1_ycvoi"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_n6p8a"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4ydpd"]
+
+[node name="RigidBody" type="RigidBody3D"]
+script = ExtResource("1_ycvoi")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+
+[node name="HitBox" type="Area3D" parent="."]
+
+[node name="HitBoxShape" type="CollisionShape3D" parent="HitBox"]
+shape = SubResource("BoxShape3D_n6p8a")
+
+[node name="PhysicsCollider" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_4ydpd")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../PhysicsCollider")
+
+[connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]

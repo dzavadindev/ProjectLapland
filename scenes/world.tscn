@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://bul7jdolkub82"]
+[gd_scene load_steps=10 format=3 uid="uid://bul7jdolkub82"]
 
-[ext_resource type="PackedScene" uid="uid://bmw1va8qdypun" path="res://scenes/player.tscn" id="1_odgw8"]
+[ext_resource type="PackedScene" uid="uid://bmw1va8qdypun" path="res://scenes/entities/player/Player.tscn" id="1_pk7at"]
+[ext_resource type="PackedScene" uid="uid://s03oi50nomng" path="res://scenes/entities/enemies/TestEnemy.tscn" id="2_6vcvh"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1g2gj"]
 sky_top_color = Color(0.466667, 0.541176, 0.639216, 1)
@@ -32,11 +33,14 @@ data = PackedVector3Array(0, 0.5, 2, 0.196, 0.5, 1.9904, 0, 0.3, 2, 0.196, 0.5, 
 
 [node name="World" type="Node3D"]
 
-[node name="Player" parent="." instance=ExtResource("1_odgw8")]
+[node name="Player" parent="." instance=ExtResource("1_pk7at")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 2.5)
 top_level = true
 mass = 0.3
 linear_damp = 5.0
+
+[node name="Enemy" parent="." instance=ExtResource("2_6vcvh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.85912, 6.4865, -8.22726)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_go16y")

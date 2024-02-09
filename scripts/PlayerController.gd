@@ -1,14 +1,14 @@
-extends RigidBody3D
+extends "res://scripts/EntityBase.gd"
 
 var dash_avalible = true;
-var dash_length = 2000
+var DASH_LENGTH = 2000
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+func _process(delta):
+	super(delta)
+	if (Input.get_action_strength("quit")) :
+		get_tree().quit()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta) -> void:
+func move (delta) :
 	var input := Vector3.ZERO
 	input.x = Input.get_axis("move_left","move_right")
 	input.z = Input.get_axis("move_forward","move_back")
@@ -17,16 +17,14 @@ func _process(delta) -> void:
 	if (Input.get_action_strength("dash") && dash_avalible) :
 		dash_avalible = false;
 		$DashCooldown.start();
-		apply_central_impulse(input * dash_length * delta)
+		apply_central_impulse(input * DASH_LENGTH * delta)
 	
 	# Horizontal : recomended boost ratio is 5/7, 
 	# everything else makes diagonal movement wanky 
 	if (input.x != 0 && input.z != 0) :
-		apply_central_force(input * 700.0 * delta)
+		apply_central_force(input * SPEED * delta)
 	else :
-		apply_central_force(input * 1000.0 * delta)
-	
+		apply_central_force(input * (SPEED - 300) * delta)
 
 func _on_dash_cooldown_timeout():
 	dash_avalible = true;
-

@@ -1,0 +1,28 @@
+[gd_scene load_steps=7 format=3 uid="uid://s03oi50nomng"]
+
+[ext_resource type="PackedScene" uid="uid://bjqhy8nhsq3gs" path="res://scenes/entities/EntityBase.tscn" id="1_oq46b"]
+[ext_resource type="Script" path="res://scripts/EnemyBahaviour.gd" id="2_abvcy"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pj81l"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_rym30"]
+material = SubResource("StandardMaterial3D_pj81l")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_te5li"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_arcej"]
+
+[node name="Enemy" instance=ExtResource("1_oq46b")]
+lock_rotation = true
+script = ExtResource("2_abvcy")
+
+[node name="Mesh" parent="." index="0"]
+mesh = SubResource("CapsuleMesh_rym30")
+
+[node name="HitBoxShape" parent="HitBox" index="0"]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_te5li")
+
+[node name="PhysicsCollider" parent="." index="2"]
+shape = SubResource("CapsuleShape3D_arcej")
